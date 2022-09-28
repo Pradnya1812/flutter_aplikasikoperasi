@@ -1,21 +1,27 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_aplikasikoperasi/dashboard.dart';
 
-class myApp extends StatelessWidget {
+class myApp extends StatefulWidget {
   const myApp({Key? key}) : super(key: key);
 
   @override
+  State<myApp> createState() => _myAppState();
+}
+
+class _myAppState extends State<myApp> {
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          title: const Text('Koperasi Undiksha'),
-          centerTitle: true,
-          backgroundColor: Color.fromARGB(255, 8, 5, 130),
-        ),
-        body: SafeArea(
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: const Text('Koperasi Undiksha'),
+        centerTitle: true,
+        backgroundColor: Color.fromARGB(255, 8, 5, 130),
+      ),
+      body: SingleChildScrollView(
+        child: SafeArea(
           child: Padding(
             padding: EdgeInsets.all(10.0),
             child: Column(
@@ -28,6 +34,9 @@ class myApp extends StatelessWidget {
                   ),
                   alignment: Alignment.topCenter,
                   padding: EdgeInsets.only(top: 50.0),
+                ),
+                SizedBox(
+                  height: 20,
                 ),
                 Container(
                   padding: EdgeInsets.all(20.0),
@@ -53,17 +62,54 @@ class myApp extends StatelessWidget {
                           border: OutlineInputBorder(),
                         ),
                       ),
+                      SizedBox(
+                        height: 20,
+                      ),
                       // Spacer(),
                       Center(
-                        child: Container(
-                          width: 200.0,
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            child: Text('Login'),
-                          ),
+                          child: Container(
+                        width: 200.0,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => dasboard(),
+                                ));
+                            print("pradnya");
+                          },
+                          child: Text('Login'),
                         ),
+                      )),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          TextButton(
+                            onPressed: () {},
+                            child: Text('Daftar Mbanking'),
+                          ),
+                          TextButton(
+                            onPressed: () {},
+                            child: Text('lupa password?'),
+                          )
+                        ],
                       )
                     ],
+                  ),
+                ),
+                SizedBox(
+                  height: 100,
+                ),
+                Container(
+                  height: 50,
+                  color: Color.fromARGB(255, 183, 199, 255),
+                  child: Center(
+                    child: Text(
+                      'Copyright@2022 by Pradnya',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 ),
               ],
