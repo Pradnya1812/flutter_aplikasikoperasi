@@ -74,7 +74,7 @@ class _myAppState extends State<myApp> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => dasboard(),
+                                  builder: (context) => dashboard(),
                                 ));
                             print("pradnya");
                           },
