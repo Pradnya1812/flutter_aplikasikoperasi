@@ -56,7 +56,7 @@ class _dashboardState extends State<dashboard> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
-                              width: 300,
+                              width: 150,
                               padding: EdgeInsets.all(20.0),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10.0),
@@ -78,7 +78,7 @@ class _dashboardState extends State<dashboard> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Container(
-                                    width: 300,
+                                    width: 150,
                                     padding: EdgeInsets.all(20.0),
                                     decoration: BoxDecoration(
                                         borderRadius:
@@ -113,9 +113,10 @@ class _dashboardState extends State<dashboard> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            tombolkategori(Icons.payment, 'Cek Saldo'),
-                            tombolkategori(Icons.payment, 'Transfer'),
-                            tombolkategori(Icons.payment, 'Deposito'),
+                            tombolkategori(
+                                Icons.wallet_membership, 'Cek Saldo'),
+                            tombolkategori(Icons.money, 'Transfer'),
+                            tombolkategori(Icons.money_sharp, 'Deposito'),
                           ],
                         ),
                         SizedBox(height: 10),
@@ -123,8 +124,9 @@ class _dashboardState extends State<dashboard> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             tombolkategori(Icons.payment, 'Pembayaran'),
-                            tombolkategori(Icons.payment, 'Pinjaman'),
-                            tombolkategori(Icons.payment, 'Mutasi'),
+                            tombolkategori(
+                                Icons.wallet_membership_outlined, 'Pinjaman'),
+                            tombolkategori(Icons.wallet_travel_sharp, 'Mutasi'),
                           ],
                         ),
                       ]),
@@ -205,6 +207,16 @@ class _dashboardState extends State<dashboard> {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Color(0xFF1C2474),
+        onPressed: () {},
+        child: Container(
+          margin: EdgeInsets.all(15.0),
+          child: Icon(Icons.qr_code_scanner),
+        ),
+        elevation: 4.0,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
