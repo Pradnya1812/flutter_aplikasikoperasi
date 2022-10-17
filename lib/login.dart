@@ -77,12 +77,12 @@ class _myAppState extends State<myApp> {
                       // Spacer(),
                       Center(
                           child: Container(
-                        width: 200.0,
+                        width: MediaQuery.of(context).size.height * 0.2,
                         child: ElevatedButton(
                           onPressed: () {
                             if (Username == '2015051100' &&
                                 Password == '2015051100') {
-                              Navigator.push(
+                              Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => dashboard()),
