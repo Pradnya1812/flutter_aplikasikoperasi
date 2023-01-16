@@ -1,11 +1,17 @@
+import 'package:flutter_aplikasikoperasi/tampilan_kategori/cek_saldo.dart';
+import 'package:flutter_aplikasikoperasi/tampilan_kategori/deposito.dart';
+import 'package:flutter_aplikasikoperasi/tampilan_kategori/mutasi.dart';
+import 'package:flutter_aplikasikoperasi/tampilan_kategori/pembayaran.dart';
+import 'package:flutter_aplikasikoperasi/tampilan_kategori/pinjaman.dart';
+import 'package:flutter_aplikasikoperasi/tampilan_kategori/transfer.dart';
+import 'package:flutter_aplikasikoperasi/tombol.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_aplikasikoperasi/tombol.dart';
+import 'model/list_users_model.dart';
 
 class MobileView extends StatelessWidget {
-  const MobileView({
-    Key? key,
-  }) : super(key: key);
+  final ListUsersModel user;
+  const MobileView({Key? key, required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,68 +31,75 @@ class MobileView extends StatelessWidget {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10.0),
                   border: Border.all(
-                    color: Color.fromARGB(255, 8, 5, 130),
+                    color: Color.fromARGB(255, 10, 7, 139),
                   ),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      child: Image(
-                        image: AssetImage('images/logoundiksha.jpeg'),
-                        width: 100,
-                        height: 100,
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        child: Image(
+                          image: AssetImage('assets/images/mypict.jpeg'),
+                          width: 180,
+                          height: 180,
+                        ),
                       ),
                     ),
-                    Container(
-                      decoration: BoxDecoration(),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: 150,
-                            padding: EdgeInsets.all(20.0),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                                color: Color.fromARGB(255, 206, 191, 238)),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('Nasabah',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold)),
-                                Text('Ni Made Pradnyaswari Wijaya'),
-                              ],
+                    Expanded(
+                      flex: 3,
+                      child: Container(
+                        decoration: BoxDecoration(),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: 150,
+                              padding: EdgeInsets.all(20.0),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  color: Color.fromARGB(255, 206, 191, 238)),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('Nasabah',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold)),
+                                  Text(user.nama.toString()),
+                                ],
+                              ),
                             ),
-                          ),
-                          SizedBox(height: 10),
-                          Container(
-                            decoration: BoxDecoration(),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Container(
-                                  width: 150,
-                                  padding: EdgeInsets.all(20.0),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      color:
-                                          Color.fromARGB(255, 206, 191, 238)),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text('Total Saldo Anda',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold)),
-                                      Text('Rp. 500.000'),
-                                    ],
+                            SizedBox(height: 10),
+                            Container(
+                              decoration: BoxDecoration(),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    // width: 150,
+                                    padding: EdgeInsets.all(20.0),
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                        color:
+                                            Color.fromARGB(255, 206, 191, 238)),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text('Total Saldo Anda',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold)),
+                                        Text(user.saldo.toString()),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -100,19 +113,78 @@ class MobileView extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          tombolkategori(Icons.wallet_membership, 'Cek Saldo'),
-                          tombolkategori(Icons.money, 'Transfer'),
-                          tombolkategori(Icons.money_sharp, 'Deposito'),
+                          tombolkategori(
+                            Icons.money,
+                            'Cek Saldo',
+                            () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CekSaldo()),
+                              );
+                            },
+                          ),
+                          tombolkategori(
+                            Icons.money,
+                            'Transfer',
+                            () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Transfer()),
+                              );
+                            },
+                          ),
+                          tombolkategori(
+                            Icons.money_sharp,
+                            'Deposito',
+                            () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Deposito()),
+                              );
+                            },
+                          ),
                         ],
                       ),
                       SizedBox(height: 10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          tombolkategori(Icons.payment, 'Pembayaran'),
                           tombolkategori(
-                              Icons.wallet_membership_outlined, 'Pinjaman'),
-                          tombolkategori(Icons.wallet_travel_sharp, 'Mutasi'),
+                            Icons.payment,
+                            'Pembayaran',
+                            () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Pembayaran()),
+                              );
+                            },
+                          ),
+                          tombolkategori(
+                            Icons.wallet_membership_outlined,
+                            'Pinjaman',
+                            () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Pinjaman()),
+                              );
+                            },
+                          ),
+                          tombolkategori(
+                            Icons.wallet_giftcard,
+                            'Mutasi',
+                            () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Mutasi()),
+                              );
+                            },
+                          ),
                         ],
                       ),
                     ]),
@@ -123,7 +195,7 @@ class MobileView extends StatelessWidget {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10.0),
                   border: Border.all(
-                    color: Color.fromARGB(255, 8, 5, 130),
+                    color: Color.fromARGB(255, 10, 7, 139),
                   ),
                 ),
               ),

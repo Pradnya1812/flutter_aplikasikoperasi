@@ -1,22 +1,19 @@
-import 'dart:ui';
-
-import 'package:flutter/material.dart';
-import 'package:flutter_aplikasikoperasi/dashboard.dart';
+import "package:flutter/material.dart";
+import 'package:flutter_aplikasikoperasi/login.dart';
 import 'package:flutter_aplikasikoperasi/model/list_users_model.dart';
-import 'package:flutter_aplikasikoperasi/register.dart';
 import 'package:flutter_aplikasikoperasi/service/list_users_service.dart';
 
-class myApp extends StatefulWidget {
-  const myApp({Key? key}) : super(key: key);
+class HalamanRegister extends StatefulWidget {
+  const HalamanRegister({Key? key}) : super(key: key);
 
   @override
-  State<myApp> createState() => _myAppState();
+  State<HalamanRegister> createState() => _HalamanRegisterState();
 }
 
-class _myAppState extends State<myApp> {
-  late String Username;
-  late String Password;
-
+class _HalamanRegisterState extends State<HalamanRegister> {
+  TextEditingController usernamecontroller = TextEditingController();
+  TextEditingController namacontroller = TextEditingController();
+  TextEditingController passwordcontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,21 +56,23 @@ class _myAppState extends State<myApp> {
                     children: [
                       Text('Username'),
                       TextFormField(
-                          onChanged: (value) {
-                            Username = value;
-                          },
+                          controller: usernamecontroller,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
                           )),
                       Text('Password'),
                       TextFormField(
-                        onChanged: (value) {
-                          Password = value;
-                        },
+                        controller: passwordcontroller,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
                         ),
                       ),
+                      Text('Nama'),
+                      TextFormField(
+                          controller: namacontroller,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                          )),
                       SizedBox(
                         height: 20,
                       ),
@@ -84,13 +83,14 @@ class _myAppState extends State<myApp> {
                           child: ElevatedButton(
                             onPressed: () async {
                               ListUsersService _service = ListUsersService();
-                              ListUsersModel user =
-                                  await _service.postLogin(Username, Password);
+                              await _service.postRegister(
+                                  usernamecontroller.text,
+                                  passwordcontroller.text,
+                                  namacontroller.text);
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        dashboard(user: user)),
+                                    builder: (context) => myApp()),
                               );
                             },
                             child: Text('Login'),
@@ -101,13 +101,7 @@ class _myAppState extends State<myApp> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           TextButton(
-                            onPressed: () {
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => HalamanRegister(),
-                                  ));
-                            },
+                            onPressed: () {},
                             child: Text('Daftar Mbanking'),
                           ),
                           TextButton(
