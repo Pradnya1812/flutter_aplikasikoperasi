@@ -20,7 +20,7 @@ class _SetoranState extends State<Setoran> {
     showDialog(
       context: (context),
       builder: (_) => AlertDialog(
-        title: Text('Are You Sure?'),
+        title: Text('Apakah kamu yakin?'),
         actions: [
           (setorLoading)
               ? CircularProgressIndicator()
