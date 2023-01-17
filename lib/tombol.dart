@@ -13,8 +13,8 @@ class tombolkategori extends StatelessWidget {
       borderRadius: BorderRadius.circular(10),
       elevation: 10,
       child: Container(
-        height: heightScreen * 0.13,
-        width: heightScreen * 0.13,
+        height: heightScreen * 0.12,
+        width: heightScreen * 0.12,
         decoration: BoxDecoration(
             color: Colors.lightBlueAccent,
             borderRadius: BorderRadius.circular(10)),

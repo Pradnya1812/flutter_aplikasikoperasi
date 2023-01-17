@@ -80,11 +80,45 @@ class ListUsersService {
       return postRegister(username, password, nama);
     }
   }
-}
 
-postPenarikan(int user_id, double jumlah_setoran) async {
-  String url = 'http://apikoperasi.rey1024.com/tarikan';
-  final Response response;
-  FormData formData =
-      FormData.fromMap({"user_id": user_id, "jumlah_setoran": jumlah_setoran});
+  Setoran(int user_id, double jumlah_setoran) async {
+    String url = 'http://apikoperasi.rey1024.com/setoran';
+    final Response response;
+    FormData formData = FormData.fromMap(
+        {"user_id": user_id, "jumlah_setoran": jumlah_setoran});
+    try {
+      response = await dio.post(url, data: formData);
+    } catch (e) {
+      print('gagal');
+    }
+  }
+
+  Tarikan(int user_id, double jumlah_tarikan) async {
+    String url = 'http://apikoperasi.rey1024.com/tarikan';
+    final Response response;
+    FormData formData = FormData.fromMap(
+        {"user_id": user_id, "jumlah_tarikan": jumlah_tarikan});
+    try {
+      response = await dio.post(url, data: formData);
+    } catch (e) {
+      print('gagal');
+    }
+  }
+
+  transfer(
+      int id_pengirim, double jumlah_setoran, String nomor_rekening) async {
+    String url = 'http://apikoperasi.rey1024.com/transfer';
+    final Response response;
+    FormData formData = FormData.fromMap({
+      "id_pengirim": id_pengirim,
+      "jumlah_transfer": jumlah_setoran,
+      "nomor_rekening": nomor_rekening
+    });
+    try {
+      response = await dio.post(url, data: formData);
+      print("berhasil");
+    } catch (e) {
+      print('gagal');
+    }
+  }
 }

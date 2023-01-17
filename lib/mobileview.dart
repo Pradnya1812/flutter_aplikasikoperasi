@@ -1,8 +1,5 @@
-import 'package:flutter_aplikasikoperasi/tampilan_kategori/cek_saldo.dart';
-import 'package:flutter_aplikasikoperasi/tampilan_kategori/deposito.dart';
-import 'package:flutter_aplikasikoperasi/tampilan_kategori/mutasi.dart';
-import 'package:flutter_aplikasikoperasi/tampilan_kategori/pembayaran.dart';
-import 'package:flutter_aplikasikoperasi/tampilan_kategori/pinjaman.dart';
+import 'package:flutter_aplikasikoperasi/tampilan_kategori/setoran.dart';
+import 'package:flutter_aplikasikoperasi/tampilan_kategori/tarikan.dart';
 import 'package:flutter_aplikasikoperasi/tampilan_kategori/transfer.dart';
 import 'package:flutter_aplikasikoperasi/tombol.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +15,7 @@ class MobileView extends StatelessWidget {
     return SingleChildScrollView(
       child: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(10.0),
+          padding: EdgeInsets.all(20.0),
           child: Column(
             children: <Widget>[
               SizedBox(
@@ -38,16 +35,6 @@ class MobileView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
-                      flex: 1,
-                      child: Container(
-                        child: Image(
-                          image: AssetImage('assets/images/mypict.jpeg'),
-                          width: 180,
-                          height: 180,
-                        ),
-                      ),
-                    ),
-                    Expanded(
                       flex: 3,
                       child: Container(
                         decoration: BoxDecoration(),
@@ -55,21 +42,15 @@ class MobileView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
-                              width: 150,
-                              padding: EdgeInsets.all(20.0),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  color: Color.fromARGB(255, 206, 191, 238)),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text('Nasabah',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold)),
-                                  Text(user.nama.toString()),
-                                ],
+                              child: Image(
+                                image: AssetImage('images/logoundiksha.jpeg'),
+                                width: 90,
+                                height: 90,
                               ),
                             ),
+                            SizedBox(height: 10),
+                            Text('Hai Selamat Datang, ' + user.nama.toString(),
+                                style: TextStyle(fontWeight: FontWeight.bold)),
                             SizedBox(height: 10),
                             Container(
                               decoration: BoxDecoration(),
@@ -105,7 +86,7 @@ class MobileView extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 20),
               Container(
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -115,81 +96,51 @@ class MobileView extends StatelessWidget {
                         children: [
                           tombolkategori(
                             Icons.money,
-                            'Cek Saldo',
-                            () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => CekSaldo()),
-                              );
-                            },
-                          ),
-                          tombolkategori(
-                            Icons.money,
                             'Transfer',
                             () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Transfer()),
+                                    builder: (context) => Transfer(
+                                          usersModel: user,
+                                        )),
                               );
                             },
                           ),
+                          Spacer(),
                           tombolkategori(
                             Icons.money_sharp,
-                            'Deposito',
+                            'Setoran',
                             () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Deposito()),
+                                    builder: (context) => Setoran(
+                                          user: user,
+                                        )),
+                              );
+                            },
+                          ),
+                          Spacer(),
+                          tombolkategori(
+                            Icons.money_sharp,
+                            'Tarikan',
+                            () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Tarikan(
+                                          user: user,
+                                        )),
                               );
                             },
                           ),
                         ],
                       ),
                       SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          tombolkategori(
-                            Icons.payment,
-                            'Pembayaran',
-                            () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Pembayaran()),
-                              );
-                            },
-                          ),
-                          tombolkategori(
-                            Icons.wallet_membership_outlined,
-                            'Pinjaman',
-                            () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Pinjaman()),
-                              );
-                            },
-                          ),
-                          tombolkategori(
-                            Icons.wallet_giftcard,
-                            'Mutasi',
-                            () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Mutasi()),
-                              );
-                            },
-                          ),
-                        ],
-                      ),
                     ]),
 
-                padding: EdgeInsets.all(20.0),
+                padding: EdgeInsets.all(10.0),
                 // height: 100.0,
                 decoration: BoxDecoration(
                   color: Colors.white,
