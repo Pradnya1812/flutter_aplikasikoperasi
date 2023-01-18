@@ -1,6 +1,6 @@
 # flutter_aplikasikoperasi
 
-A new Flutter project.
+Link Youtube: https://youtu.be/K12W_xOKUlM
 
 ## Getting Started
 
